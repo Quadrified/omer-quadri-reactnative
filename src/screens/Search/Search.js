@@ -1,49 +1,46 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, FlatList, Keyboard } from 'react-native';
 import _ from 'lodash';
 import { Searchbar, ActivityIndicator } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
 import AppColors from '../../themes/AppColors';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearSearchResult, fetchSearchData } from '../../redux/actions';
-import { getSearchData } from '../../redux/selectors';
+import { useSelector } from 'react-redux';
+import { getHomeProductData } from '../../redux/selectors';
 import AppHeader from '../../components/AppHeader';
+import ProductCard from '../Home/components/ProductCard';
 
 const Search = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchResultData, setSearchResultData] = useState(null);
 
   const searchRef = useRef(null);
-  const dispatch = useDispatch();
 
-  const searchData = useSelector(state => getSearchData(state));
+  const allProductsData = useSelector(state => getHomeProductData(state));
+
+  // console.log('>>>allProductsData<<<', allProductsData);
 
   useEffect(() => {
-    dispatch(clearSearchResult());
     searchRef.current.focus();
-  }, [dispatch]);
+  }, []);
 
-  const searchUser = query => {
+  const searchProduct = query => {
     if (!query.length) {
       setIsLoading(false);
-      dispatch(clearSearchResult());
       return;
     }
-    dispatch(fetchSearchData(query))
-      .then(() => {
-        setTimeout(() => {
-          Keyboard.dismiss();
-          setIsLoading(false);
-        }, 300);
-      })
-      .catch(error => {
-        console.error('error in onChangeSearch', error);
-        setIsLoading(false);
-      });
+    setTimeout(() => {
+      const filteredData = allProductsData.filter(product =>
+        product.name.includes(query),
+      );
+      setSearchResultData(filteredData);
+      Keyboard.dismiss();
+      setIsLoading(false);
+    }, 300);
   };
 
-  const debouncedSearch = _.debounce(searchUser, 3000);
+  const debouncedSearch = _.debounce(searchProduct, 3000);
 
   const onChangeSearch = query => {
     setIsLoading(true);
@@ -51,8 +48,8 @@ const Search = ({ navigation }) => {
     debouncedSearch(query);
   };
 
-  const onPressResult = userID => {
-    navigation.navigate('Profile', { authorID: userID });
+  const onPressResult = productID => {
+    navigation.navigate('ProductDetails', { productID });
   };
 
   return (
@@ -62,8 +59,7 @@ const Search = ({ navigation }) => {
         <View style={styles.searchContainer}>
           <Searchbar
             ref={searchRef}
-            icon="search"
-            placeholder="Search for a user"
+            placeholder="Search for a product"
             onChangeText={onChangeSearch}
             value={searchQuery}
             theme={{ roundness: 10 }}
@@ -76,28 +72,37 @@ const Search = ({ navigation }) => {
         <View
           style={styles.searchResultContainer}
           onTouchStart={() => Keyboard.dismiss()}>
-          {/* <View>
+          <View>
             {isLoading ? (
               <ActivityIndicator animating size={40} style={styles.loader} />
             ) : (
               <FlatList
-                data={searchData}
-                keyExtractor={data => data.id}
+                numColumns={2}
+                data={searchResultData}
+                keyExtractor={data => data._id}
                 renderItem={({
-                  item: { id, name, username, email, phone },
+                  item: {
+                    _id,
+                    avatar: productImage,
+                    name,
+                    category,
+                    price,
+                    developerEmail: productAuthor,
+                  },
                 }) => (
-                  <SearchResultCard
-                    userID={id}
-                    fullName={name}
-                    userName={username}
-                    email={email}
-                    phoneNumber={phone}
-                    onPressResult={onPressResult}
+                  <ProductCard
+                    productID={_id}
+                    productImage={productImage}
+                    productTitle={name}
+                    productCategory={category}
+                    productPrice={price}
+                    productAuthor={productAuthor}
+                    onSelectProduct={onPressResult}
                   />
                 )}
               />
             )}
-          </View> */}
+          </View>
         </View>
       </View>
     </>

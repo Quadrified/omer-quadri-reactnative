@@ -1,10 +1,9 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AppColors from '../themes/AppColors';
-import PostifyLogo from '../assets/images/Postify.svg';
+import UPayStoreLogo from '../assets/svgs/uPayStoreLogo.svg';
 import { BACK_HEADER_SCREENS } from '../utils/constants';
 
 const AppHeader = ({ title }) => {
@@ -25,7 +24,7 @@ const AppHeader = ({ title }) => {
       ) : (
         <View style={styles.container}>
           <View>
-            <PostifyLogo width={100} />
+            <UPayStoreLogo width={130} height={100} />
           </View>
           <Icon
             name="search"
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: 80,
-    width: wp('100%'),
+    width: '100%',
     padding: 20,
     backgroundColor: AppColors.background,
     elevation: 1,
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     height: 80,
-    width: wp('100%'),
+    width: '100%',
     padding: 10,
     backgroundColor: AppColors.background,
   },

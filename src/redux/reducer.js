@@ -3,14 +3,6 @@ import {
   FETCH_PRODUCTS_ERROR,
   FETCH_CATEGORIES,
   FETCH_CATEGORIES_ERROR,
-  FETCH_INDIVIDUAL_PRODUCT,
-  FETCH_INDIVIDUAL_PRODUCT_ERROR,
-  POST_NEW_PRODUCT,
-  POST_NEW_PRODUCT_ERROR,
-  FETCH_INDIVIDUAL_CATEGORY,
-  FETCH_INDIVIDUAL_CATEGORY_ERROR,
-  FETCH_SEARCH_RESULT,
-  CLEAR_SEARCH_RESULT,
 } from './types';
 
 const initialState = {
@@ -46,24 +38,6 @@ const reducer = (state = initialState, action) => {
         error: action.payload,
       };
     }
-    // case FETCH_INDIVIDUAL_PRODUCT: {
-    //   return {
-    //     ...state,
-    //     userData: action.payload,
-    //   };
-    // }
-    // case FETCH_INDIVIDUAL_PRODUCT_ERROR: {
-    //   return {
-    //     ...state,
-    //     error: action.payload,
-    //   };
-    // }
-    // case CLEAR_SEARCH_RESULT: {
-    //   return {
-    //     ...state,
-    //     searchData: action.payload,
-    //   };
-    // }
 
     default: {
       return state;

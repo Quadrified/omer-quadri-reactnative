@@ -28,7 +28,7 @@ const CategoryFilter = ({ categoryData, onSelectCategory }) => {
             <Text
               style={
                 selectedCategory === 'All'
-                  ? styles.seectedCategoryTitle
+                  ? styles.selectedCategoryTitle
                   : styles.categoryTitle
               }>
               All
@@ -47,7 +47,7 @@ const CategoryFilter = ({ categoryData, onSelectCategory }) => {
               <Text
                 style={
                   selectedCategory === categoryName
-                    ? styles.seectedCategoryTitle
+                    ? styles.selectedCategoryTitle
                     : styles.categoryTitle
                 }>
                 {categoryName}
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: AppColors.dark,
   },
-  seectedCategoryTitle: {
+  selectedCategoryTitle: {
     fontFamily: AppFonts.ExtraBold,
     fontSize: 14,
     color: AppColors.white,

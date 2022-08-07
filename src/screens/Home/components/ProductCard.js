@@ -45,8 +45,12 @@ const ProductCard = ({
             </View>
           )}
           <View style={styles.details}>
-            <MaterialIcons name="email" size={16} color={AppColors.secondary} />
-            <Text style={styles.category} numberOfLines={1}>
+            <MaterialIcons
+              name="person"
+              size={16}
+              color={AppColors.secondary}
+            />
+            <Text style={styles.category} numberOfLines={0}>
               {productAuthor}
             </Text>
           </View>
@@ -91,7 +95,7 @@ const styles = StyleSheet.create({
     fontFamily: AppFonts.MediumItalic,
     fontSize: 12,
     color: AppColors.dark,
-    paddingLeft: 10,
+    paddingLeft: 5,
   },
 });
 

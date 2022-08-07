@@ -19,7 +19,7 @@ const AppStackNavigator = () => {
       }}>
       <AppStack.Screen name="Home" component={Home} />
       <AppStack.Screen name="ProductDetails" component={ProductDetails} />
-      <AppStack.Screen name="Add Product" component={AddProduct} />
+      <AppStack.Screen name="AddProduct" component={AddProduct} />
       <AppStack.Screen name="Search" component={Search} />
     </AppStack.Navigator>
   );
