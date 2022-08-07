@@ -2,45 +2,63 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { View, FlatList, RefreshControl } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPostData } from '../../redux/actions';
-import { getHomePostData } from '../../redux/selectors';
+import { getAllProducts, getAllCategories } from '../../redux/actions';
+import { getHomeCategoryData, getHomeProductData } from '../../redux/selectors';
 import styles from './styles';
 import AppColors from '../../themes/AppColors';
 import AppHeader from '../../components/AppHeader';
-import PostCard from './components/PostCard';
+import CategoryFilter from './components/CategoryFilter';
+import ProductCard from './components/ProductCard';
 import { REFRESH_PROPS } from '../../utils/constants';
 
 const Home = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [productData, setProductData] = useState(null);
 
   const dispatch = useDispatch();
-  const postData = useSelector(state => getHomePostData(state));
+  const allProductsData = useSelector(state => getHomeProductData(state));
+  const categoryData = useSelector(state => getHomeCategoryData(state));
+
+  // console.log('>>>allProductsData<<<', allProductsData);
 
   useEffect(() => {
-    // Fetchin only 30 posts on first load. Later fetches random number of posts.
-    dispatch(getPostData(30))
+    dispatch(getAllProducts())
       .then(data => {
         if (data.ok) {
-          setIsLoading(false);
+          dispatch(getAllCategories())
+            .then(() => {
+              setProductData(data?.data?.products);
+              setIsLoading(false);
+            })
+            .catch(error => {
+              console.log('Caught in home -> getAllCategories', error);
+            });
         }
-        setIsLoading(false);
       })
       .catch(error => {
-        console.log('Caught in home -> fetchHome', error);
+        setIsLoading(false);
+        console.log('Caught in home -> getAllProducts', error);
       });
   }, [dispatch]);
 
   const onRefresh = useCallback(() => {
-    // Fetching random number of posts on every refresh upto 50
-    const randomNumberOfPostLimit = Math.floor(Math.random() * 50);
     setRefreshing(true);
     setIsLoading(true);
-    dispatch(getPostData(randomNumberOfPostLimit))
+    dispatch(getAllProducts())
       .then(data => {
         if (data) {
-          setRefreshing(false);
-          setIsLoading(false);
+          dispatch(getAllCategories())
+            .then(() => {
+              setProductData(allProductsData);
+              setSelectedCategory('All');
+              setRefreshing(false);
+              setIsLoading(false);
+            })
+            .catch(error => {
+              console.log('Caught in home -> getAllCategories', error);
+            });
         }
       })
       .catch(error => {
@@ -48,15 +66,36 @@ const Home = ({ navigation }) => {
         setIsLoading(false);
         console.log('Caught in home -> onRefreshCallback', error);
       });
-  }, [dispatch]);
+  }, [allProductsData, dispatch]);
 
-  const onPressPost = (postID, postAuthorID) => {
-    navigation.navigate('Post', { postID, postAuthorID });
+  const onSelectCategory = category => {
+    // setIsLoading(true);
+    setSelectedCategory(category);
+    filterSelectedCategoryProducts(category);
   };
 
-  const onPressProfile = authorID => {
-    navigation.navigate('Profile', { authorID });
+  const filterSelectedCategoryProducts = category => {
+    if (category === 'All') {
+      console.log('>>>all<<<', allProductsData);
+      setProductData(allProductsData);
+      return;
+    }
+    const filteredData = allProductsData.filter(
+      data => data.category === category,
+    );
+    console.log('>>>filteredData<<<', filteredData);
+    setProductData(filteredData);
+    // setIsLoading(false);
   };
+
+  const onSelectProduct = productID => {
+    console.log('>>>productID<<<', productID);
+    // navigation.navigate('Post', { productID });
+  };
+
+  // const onCreateNewProduct = authorID => {
+  //   navigation.navigate('Add Product');
+  // };
 
   return (
     <>
@@ -65,7 +104,11 @@ const Home = ({ navigation }) => {
         <ActivityIndicator animating size={50} style={styles.loader} />
       ) : (
         <View style={styles.container}>
-          {/* <FlatList
+          <CategoryFilter
+            categoryData={categoryData}
+            onSelectCategory={onSelectCategory}
+          />
+          <FlatList
             refreshControl={
               <RefreshControl
                 refreshing={refreshing}
@@ -74,19 +117,31 @@ const Home = ({ navigation }) => {
                 {...REFRESH_PROPS}
               />
             }
-            data={postData}
-            keyExtractor={data => data.id}
-            renderItem={({ item: { id, userId, body, title } }) => (
-              <PostCard
-                postID={id}
-                postTitle={title}
-                postAuthorID={userId}
-                postBody={body}
-                onPressPost={onPressPost}
-                onPressProfile={onPressProfile}
+            numColumns={2}
+            data={productData}
+            keyExtractor={data => data._id}
+            renderItem={({
+              item: {
+                _id,
+                avatar: productImage,
+                name,
+                category,
+                price,
+                developerEmail: productAuthor,
+              },
+            }) => (
+              <ProductCard
+                productID={_id}
+                productImage={productImage}
+                productTitle={name}
+                productCategory={category}
+                productPrice={price}
+                productAuthor={productAuthor}
+                onSelectProduct={onSelectProduct}
+                selectedCategory={selectedCategory}
               />
             )}
-          /> */}
+          />
         </View>
       )}
     </>

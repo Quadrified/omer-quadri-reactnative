@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearSearchResult, fetchSearchData } from '../../redux/actions';
 import { getSearchData } from '../../redux/selectors';
 import AppHeader from '../../components/AppHeader';
-import SearchResultCard from './components/SearchResultCards';
 
 const Search = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +62,7 @@ const Search = ({ navigation }) => {
         <View style={styles.searchContainer}>
           <Searchbar
             ref={searchRef}
-            icon="account-search"
+            icon="search"
             placeholder="Search for a user"
             onChangeText={onChangeSearch}
             value={searchQuery}
@@ -77,7 +76,7 @@ const Search = ({ navigation }) => {
         <View
           style={styles.searchResultContainer}
           onTouchStart={() => Keyboard.dismiss()}>
-          <View>
+          {/* <View>
             {isLoading ? (
               <ActivityIndicator animating size={40} style={styles.loader} />
             ) : (
@@ -98,7 +97,7 @@ const Search = ({ navigation }) => {
                 )}
               />
             )}
-          </View>
+          </View> */}
         </View>
       </View>
     </>

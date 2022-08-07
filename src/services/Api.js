@@ -2,11 +2,13 @@
     API call configurations
  --------------------------**/
 import { create } from 'apisauce';
-
-const rootpath = 'https://jsonplaceholder.typicode.com/';
+import Config from 'react-native-config';
 
 export const api = create({
-  baseURL: rootpath,
-  headers: { Accept: 'application/json' },
+  baseURL: Config.API_ROOT_PATH,
+  headers: {
+    Accept: 'application/json',
+    Authorization: `Bearer ${Config.BEARER_TOKEN}`,
+  },
   timeout: 15000,
 });

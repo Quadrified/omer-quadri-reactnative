@@ -4,9 +4,9 @@ import {
   TransitionPresets,
 } from '@react-navigation/stack';
 import Home from '../screens/Home/Home';
-import Post from '../screens/Post/Post';
-import Profile from '../screens/Profile/Profile';
 import Search from '../screens/Search/Search';
+import ProductDetails from '../screens/Product/ProductDetails';
+import AddProduct from '../screens/Product/AddProduct';
 
 const AppStack = createStackNavigator();
 
@@ -18,8 +18,8 @@ const AppStackNavigator = () => {
         ...TransitionPresets.SlideFromRightIOS,
       }}>
       <AppStack.Screen name="Home" component={Home} />
-      <AppStack.Screen name="Post" component={Post} />
-      <AppStack.Screen name="Profile" component={Profile} />
+      <AppStack.Screen name="ProductDetails" component={ProductDetails} />
+      <AppStack.Screen name="Add Product" component={AddProduct} />
       <AppStack.Screen name="Search" component={Search} />
     </AppStack.Navigator>
   );

@@ -1,10 +1,9 @@
 import { api as API } from '../services/Api';
 import Paths from '../services/Paths';
 
-export const getPostsController = limit => {
+export const getAllProductsController = () => {
   return new Promise((resolve, reject) => {
-    let path = Paths.getPosts;
-    path = path.replace(':limit', limit);
+    let path = Paths.getAllProducts;
     API.get(path)
       .then(response => {
         if (response.ok) {
@@ -12,16 +11,15 @@ export const getPostsController = limit => {
         }
       })
       .catch(error => {
-        console.log('>>>error in getPostController<<<', error);
+        console.log('>>>error in getAllProductsController<<<', error);
         reject(error);
       });
   });
 };
 
-export const getUserDataController = userID => {
+export const getAllCategoriesController = () => {
   return new Promise((resolve, reject) => {
-    let path = Paths.getUser;
-    path = path.replace(':user_id', userID);
+    let path = Paths.getAllCategories;
     API.get(path)
       .then(response => {
         if (response.ok) {
@@ -29,16 +27,16 @@ export const getUserDataController = userID => {
         }
       })
       .catch(error => {
-        console.log('>>>error in getUserDataController<<<', error);
+        console.log('>>>error in getAllCategoriesController<<<', error);
         reject(error);
       });
   });
 };
 
-export const getSearchDataController = searchQuery => {
+export const getIndividualProductController = productID => {
   return new Promise((resolve, reject) => {
-    let path = Paths.search;
-    path = path.replace(':search_query', searchQuery);
+    let path = Paths.getIndividualProduct;
+    path = path.replace(':id', productID);
     API.get(path)
       .then(response => {
         if (response.ok) {
@@ -46,7 +44,24 @@ export const getSearchDataController = searchQuery => {
         }
       })
       .catch(error => {
-        console.log('>>>error in getUserDataController<<<', error);
+        console.log('>>>error in getIndividualProductController<<<', error);
+        reject(error);
+      });
+  });
+};
+
+export const getIndividualCategoryController = categoryID => {
+  return new Promise((resolve, reject) => {
+    let path = Paths.getIndividualCategory;
+    path = path.replace(':id', categoryID);
+    API.get(path)
+      .then(response => {
+        if (response.ok) {
+          resolve(response);
+        }
+      })
+      .catch(error => {
+        console.log('>>>error in getIndividualCategoryController<<<', error);
         reject(error);
       });
   });

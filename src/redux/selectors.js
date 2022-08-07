@@ -1,18 +1,22 @@
-export const getHomePostData = state => {
-  return state.MainReducer.postData;
+export const getHomeProductData = state => {
+  return state.MainReducer.productsData.products;
 };
 
-export const getCompleteAuthorData = state => {
-  return state.MainReducer?.userData[0];
+export const getHomeCategoryData = state => {
+  return state.MainReducer.categoryData.categories;
 };
 
-export const getFilteredAuthorName = (state, authorID) => {
-  const authorName = state.MainReducer?.userData?.filter(
-    user => user.id === authorID,
-  )[0]?.username;
-  return authorName;
-};
+// export const getCompleteAuthorData = state => {
+//   return state.MainReducer?.userData[0];
+// };
 
-export const getSearchData = state => {
-  return state.MainReducer.searchData;
-};
+// export const getFilteredAuthorName = (state, authorID) => {
+//   const authorName = state.MainReducer?.userData?.filter(
+//     user => user.id === authorID,
+//   )[0]?.username;
+//   return authorName;
+// };
+
+// export const getSearchData = state => {
+//   return state.MainReducer.searchData;
+// };
