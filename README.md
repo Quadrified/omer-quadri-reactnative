@@ -1,16 +1,16 @@
 <!-- App Name -->
 
 <p align="center">
-  <img src="./src/assets/images/Postify.svg">
+  <img src="./src/assets/svgs/uPayStoreLogo.svg">
 </p>
 
 ## Preview
 
-You can install an APK for the app using the "postify-release.apk" file located in the ```App Previews``` folder
+You can install an APK for the app using the "uPayStore-release.apk" file located in the ```App Previews``` folder
 OR
-Download the APK from [this link](https://drive.google.com/file/d/1WVhH8bCisgsR37QJnn7oLzA7_wulJ6pC/view?usp=sharing)
+Download the APK from [this link]()
 
-The video demonstration of the app can be found at [this link](https://drive.google.com/file/d/1WRWsA9l3fG7EZoOZkICeEQbkECOtAF0b/view?usp=sharing)
+The video demonstration of the app can be found at [this link]()
 
 ---
 ## Screenshots
@@ -27,77 +27,72 @@ The video demonstration of the app can be found at [this link](https://drive.goo
 ---
 
 ## About
-Postify is a React Native project created usin JSONPlaceholder, a very popular service that provides useful fake API for testing and prototyping.
+uPayStore is a React Native project created to display, search, and view a listing of products fetched from several APIs.
 The app is created with React Native version 0.67.4 and utilizes 3rd party libraries like ```react-navigation``` for moving between screens, ```react-native-paper``` for UI components, ```redux``` for State management, ```apisauce``` for API calls etc.
 
 ### API endpoints used
-- Get Posts data
+- Get Products data
 
     ```javascript
-        https://jsonplaceholder.typicode.com/posts?_limit=:limit&_embed=comments
+        https://upayments-studycase-api.herokuapp.com/api/products
     ```
-    
-    Where ```:limit``` is a custom limit sent to API to generate random number of Posts
 
-- Get User data
+- Get Categories data
     ```javascript
-            https://jsonplaceholder.typicode.comusers?id=:user_id
+        https://upayments-studycase-api.herokuapp.com/api/categories/
     ```
     
-    Where ```:user_id``` is a user ID of the user
-    
-- Search
+- Post a new Product
     ```javascript
-            https://jsonplaceholder.typicode.com/users?q=:search_query
+        https://upayments-studycase-api.herokuapp.com/api/products
     ```
-    
-    Where ```:search_query``` is the query phrase sent to API to search for a user
 
 
-### Postify has 3 screens:
+### uPay Store has 3 screens:
 #### Home screen
-  - Displays Postify's logo on the left of the header and a search icon on the right which on tapping navigates to the Search screen.
-  - Displays a list of 30 posts on opening the app.
-  - Each post is a card that displays:
-      - Title of the post
-      - Dummy cover image
-      - Preview of the body of the post
-      - Username of the author oF a post => Clicking on the username takes navigates to Profile screen with all the details of the author.
-      - Tapping anywhere on the card and the "Learn More" button navigates to individual Post screen.
-  - Pulling down to refresh the Home screen generates random number of posts on each refresh.
+  - Displays uPay Store's logo on the left of the header and a search icon on the right which on tapping navigates to the Search screen.
+  - Displays a list of all the products on opening the app.
+  - Each product is a card that displays:
+      - Image of the product
+      - Price tag of the product
+      - Title of the product
+      - Category which the product belongs to
+      - Email of the user who posted the product
+      - Tapping anywhere on the card  navigates to individual Product Details screen.
+  - Pulling down to refresh the Home screen fetches new data (if any) on each refresh.
+  - There is an FAB at the bottom right of the screen, tapping on which will navogate the user to a form that lets the user Add a new product.
 
-#### Post screen
+#### Product Details screen
   - Displays the cover image on top
-  - Displys the Username of the author of the post. Tappin on the Username wiil navigate to the Profile screen with all details of the user
-  - Displays the Title of the post
-  - Displays the complete Body of the post
-  - Each post has a Comment section that displays:
-      - The number of comments for that post
-      - Username of the commenter
-      - Body of the comment
-      - Email address of the commemter
+  - Displays the Title of the product
+  - Displays the Price of the product
+  - Displays the Category of the post
+  - Displys the Email of the user who posted the product
+  - Displays the Time when the details of the product were updated in the recent past
+  - Displays the Description of the Product
 
- #### Profile screen
-  - Displays the full name of the Author/User
-  - Displys the Username
-  - Displays the Email, tapping on which opens up the email client(GMail, Outlook etc.)
-  - Displays the Phone, tapping on which opens up the phone dialer
-  - Displays the Website, tapping on which opens up the link in the default browser
-  - Displays the Full Address, and a "Locate on Maps" button which opens the default Map for the User's Latitude and Longitude
-  - Displays the User's Company name
-  - Displays the Company's Busiess type
-  - Displays the Company's Catch phrase
+ #### Add Product screen
+  - Displays a form to Add a new product
+  - Has the following fields:
+    - Product name
+    - Product Price
+    - Selection of Categories available
+    - Description of the product
+    - URL if the image of the product
+  - On successfully filling the form and tapping the "Add Product" button, an API call is made that adds the product to the Database.
+  - After adding the Product, the Home screen displays the latest data.
     
 #### Search screen
   - Tapping the Search icon on top-right of the header navigates to the Search screen.
-  - Displys a Search bar which is focused on navigation to the Search screen
-  - On typing the search query, an API call is made which returns a list of results if available
+  - Displys a Search bar which is focused and ready when the user navigates to the Search screen
+  - On typing the search query, a search algorithm runs and finds the products related to the search query
   - The result is displayed as a card with bried details such as:
-      - Full name of the user
-      - Username of the user
-      - Email address of the user
-      - Phone number of the user
-  - Tapping on each card navigates to the Profile screen for that searched user and gives all the details for the user
+      - Image of the product
+      - Price tag of the product
+      - Title of the product
+      - Category which the product belongs to
+      - Email of the user who posted the product
+      - Tapping anywhere on the card  navigates to individual Product Details screen.
  
 ---
 ## Notes
