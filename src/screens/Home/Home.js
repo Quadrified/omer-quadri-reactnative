@@ -77,23 +77,19 @@ const Home = ({ navigation }) => {
   }, [allProductsData, dispatch]);
 
   const onSelectCategory = category => {
-    // setIsLoading(true);
     setSelectedCategory(category);
     filterSelectedCategoryProducts(category);
   };
 
   const filterSelectedCategoryProducts = category => {
     if (category === 'All') {
-      console.log('>>>all<<<', allProductsData);
       setProductData(allProductsData);
       return;
     }
     const filteredData = allProductsData.filter(
       data => data.category === category,
     );
-    console.log('>>>filteredData<<<', filteredData);
     setProductData(filteredData);
-    // setIsLoading(false);
   };
 
   const onSelectProduct = productID => {
