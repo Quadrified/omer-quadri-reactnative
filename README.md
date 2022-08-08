@@ -1,4 +1,4 @@
-****<!-- App Name -->
+<!-- App Name -->
 
 <p align="center">
   <img src="./src/assets/svgs/uPayStoreLogo.svg">
