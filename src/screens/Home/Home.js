@@ -100,10 +100,6 @@ const Home = ({ navigation }) => {
     navigation.navigate('ProductDetails', { productID });
   };
 
-  // const onCreateNewProduct = authorID => {
-  //   navigation.navigate('AddProduct');
-  // };
-
   return (
     <>
       <AppHeader title="Home" />

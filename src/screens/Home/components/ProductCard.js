@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity, Text } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import PricingContainer from '../../../components/PricingContainer';
+import PricingContainer from './PricingContainer';
 import AppColors from '../../../themes/AppColors';
 import AppFonts from '../../../themes/AppFonts';
 

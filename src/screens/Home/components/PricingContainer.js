@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import AppColors from '../themes/AppColors';
-import Pricing from '../assets/svgs/price-tag.svg';
-import AppFonts from '../themes/AppFonts';
+import AppColors from '../../../themes/AppColors';
+import Pricing from '../../../assets/svgs/price-tag.svg';
+import AppFonts from '../../../themes/AppFonts';
 
 const PricingContainer = ({ price }) => {
   return (

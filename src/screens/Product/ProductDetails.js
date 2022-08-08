@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, ScrollView, Image, StyleSheet } from 'react-native';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
@@ -10,9 +10,6 @@ import AppFonts from '../../themes/AppFonts';
 
 const ProductDetails = ({ route }) => {
   const allProductsData = useSelector(state => getHomeProductData(state));
-  useEffect(() => {
-    return () => {};
-  }, []);
 
   return (
     <>

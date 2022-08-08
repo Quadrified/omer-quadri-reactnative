@@ -19,8 +19,6 @@ const Search = ({ navigation }) => {
 
   const allProductsData = useSelector(state => getHomeProductData(state));
 
-  // console.log('>>>allProductsData<<<', allProductsData);
-
   useEffect(() => {
     searchRef.current.focus();
   }, []);
