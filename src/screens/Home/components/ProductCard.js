@@ -62,7 +62,7 @@ const ProductCard = ({
 
 const styles = StyleSheet.create({
   container: {
-    width: 180,
+    width: '48%',
     height: 320,
     margin: 5,
     borderRadius: 10,

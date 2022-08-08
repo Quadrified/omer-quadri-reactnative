@@ -51,26 +51,6 @@ const Home = ({ navigation }) => {
     }, [dispatch]),
   );
 
-  // useEffect(() => {
-  //   dispatch(getAllProducts())
-  //     .then(data => {
-  //       if (data.ok) {
-  //         dispatch(getAllCategories())
-  //           .then(() => {
-  //             setProductData(data?.data?.products);
-  //             setIsLoading(false);
-  //           })
-  //           .catch(error => {
-  //             console.log('Caught in home -> getAllCategories', error);
-  //           });
-  //       }
-  //     })
-  //     .catch(error => {
-  //       setIsLoading(false);
-  //       console.log('Caught in home -> getAllProducts', error);
-  //     });
-  // }, [dispatch]);
-
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     setIsLoading(true);
