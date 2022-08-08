@@ -1,4 +1,4 @@
-<!-- App Name -->
+****<!-- App Name -->
 
 <p align="center">
   <img src="./src/assets/svgs/uPayStoreLogo.svg">
@@ -6,22 +6,21 @@
 
 ## Preview
 
-You can install an APK for the app using the "uPayStore-release.apk" file located in the ```App Previews``` folder
-OR
-Download the APK from [this link]()
+You can install an APK for the app using [this link](https://drive.google.com/file/d/1cZdRJDe7QMYW3or-wuSX8ogXyoQvWzCZ/view?usp=sharing)
 
-The video demonstration of the app can be found at [this link]()
+The video demonstration of the app can be found at [this link](https://drive.google.com/file/d/1cW0iqp89TQg70AYJTuJGsGobRQc6WOa6/view?usp=sharing)
 
 ---
 ## Screenshots
 <p align="center">
-  <img src="./src/assets/screenshots/Splash.jpeg" width="200" />
   <img src="./src/assets/screenshots/Home.jpeg" width="200" />
-  <img src="./src/assets/screenshots/Post.jpeg" width="200" />
-  <img src="./src/assets/screenshots/Post-Comments.jpeg" width="200" />
-  <img src="./src/assets/screenshots/Search-Start.jpeg" width="200" />
-  <img src="./src/assets/screenshots/Search-Results.jpeg" width="200" />
-  <img src="./src/assets/screenshots/Profile.jpeg" width="200" />
+  <img src="./src/assets/screenshots/Electronics-Filtered.jpeg" width="200" />
+  <img src="./src/assets/screenshots/Furniture-Filter.jpeg" width="200" />
+  <img src="./src/assets/screenshots/ProductDetails.jpeg" width="200" />
+  <img src="./src/assets/screenshots/AddProductFormEmpty.jpeg" width="200" />
+  <img src="./src/assets/screenshots/AddProductForm.jpeg" width="200" />
+  <img src="./src/assets/screenshots/NewProductDetails.jpeg" width="200" />
+  <img src="./src/assets/screenshots/Search.jpeg" width="200" />
 </p>
 
 ---
